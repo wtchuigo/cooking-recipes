@@ -49,7 +49,6 @@ export default {
         },
       });
       this.recipes = (await resp.json()).hits;
-      console.log(this.meal)
       console.log(this.recipes);
     },
   },
