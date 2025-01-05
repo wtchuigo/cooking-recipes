@@ -1,22 +1,11 @@
 <template>
-  <form
-    id="recherche"
-    @submit.prevent="
-      $emit(
-        'handleRecherche',
-        meal,
-        diet,
-        cuisineTypeSelected,
-        mealTypeSelected
-      )
-    "
-  >
+  <form id="recherche" @submit.prevent="submit">
     <div>
       <input type="text" placeholder="Meal.." v-model="meal" />
     </div>
     <div>
-      <select v-model="diet" >
-        <option disabled value="">Please select one</option>
+      <select v-model="diet">
+        <option disabled value="">Diet...</option>
         <option>balanced</option>
         <option>high-fiber</option>
         <option>high-protein</option>
@@ -26,8 +15,8 @@
       </select>
     </div>
     <div>
-      <select v-model="cuisineTypeSelected" >
-        <option disabled value="">Please select one</option>
+      <select v-model="cuisineTypeSelected">
+        <option disabled value="">Cuisine Type...</option>
         <option>American</option>
         <option>Asian</option>
         <option>British</option>
@@ -41,8 +30,8 @@
       </select>
     </div>
     <div>
-      <select v-model="mealTypeSelected" >
-        <option disabled value="">Please select one</option>
+      <select v-model="mealTypeSelected">
+        <option disabled value="">Meal type...</option>
         <option>Breakfast</option>
         <option>Dinner</option>
         <option>Lunch</option>
@@ -53,7 +42,7 @@
     <div>
       <button id="submit" type="submit" value="Rechercher un livre">
         <img
-          class="searchStock"
+          class="searchButton"
           src="../images/search_FILL0_wght400_GRAD0_opsz48.png"
         />
       </button>
@@ -63,14 +52,39 @@
 
 <script>
 export default {
-    data() {
-        return {
-            meal: "",
-            diet: "",
-            cuisineTypeSelected: "",
-            mealTypeSelected: "",
-        }
+  data() {
+    return {
+      meal: "",
+      diet: "",
+      cuisineTypeSelected: "",
+      mealTypeSelected: "",
+    };
+  },
+  methods: {
+    submit: function () {
+      if (this.meal == "") {
+        alert("meal is empty");
+      } else if (this.diet == "") {
+        alert("select a diet");
+      } else if (this.cuisineTypeSelected == "") {
+        alert("select a cuisine type");
+      } else if (this.mealTypeSelected == "") {
+        alert("select a meal type");
+      } else {
+        this.$emit(
+          "handleRecherche",
+          this.meal,
+          this.diet,
+          this.cuisineTypeSelected,
+          this.mealTypeSelected
+        );
+        this.meal = "";
+        this.diet = "";
+        this.mealTypeSelected = "";
+        this.cuisineTypeSelected = "";
+      }
     },
+  },
 };
 </script>
 
@@ -98,13 +112,10 @@ export default {
 }
 
 input[type="text"]::placeholder {
-  color: black;
+  color: rgba(0, 0, 0, 0.4);
+    font-size: 12px;
 }
-#recherche {
-  border: black dashed 1px;
-  display: flex;
-  align-items: flex-end;
-}
+
 #recherche div {
   padding: 5px;
   display: inline-block;
@@ -129,6 +140,4 @@ input[type="text"]::placeholder {
   background-color: #faeab1;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
-
-
 </style>

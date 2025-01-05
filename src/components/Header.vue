@@ -1,6 +1,9 @@
 <template>
   <nav id="header">
-    <RecipesRecherche class="app" @handleRecherche="searchRecipes" id="recherche" />
+    <RecipesRecherche
+      @handleRecherche="searchRecipes"
+      id="recherche"
+    />
   </nav>
 </template>
 
@@ -19,7 +22,6 @@ export default {
         cuisineTypeSelected,
         mealTypeSelected
       );
-      console.log(this.meal)
     },
   },
 };
@@ -41,32 +43,14 @@ export default {
   justify-content: space-between;
   -webkit-justify-content: space-between;
 }
-#header a {
+
+#recherche {
   padding: 20px;
   font-weight: bold;
-  color: black;
-  padding: 10px;
-  justify-content: center;
-  display: flex;
-  white-space: nowrap;
+  color: #2d2d2d;
+  height: 70px;
   align-items: center;
-  transition: color 2s;
-}
-.header {
-  position: fixed; /* or sticky */
-  top: 0;
-  background-color: powderblue;
-  height: 120px;
-  width: 100%;
-  padding: 16px;
   display: flex;
-  align-items: flex-end;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
-.app {
-  border: black dashed 1px;
-  display: flex;
-  align-items: flex-end;
+  margin-left: auto;
 }
 </style>
